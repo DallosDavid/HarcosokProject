@@ -94,7 +94,7 @@ namespace HarcosProject
             bool l = true;
             if (masikHaros == this)
             {
-                Console.WriteLine("Saját magát nem tudja sebezni.");
+                Console.WriteLine("Saját magát nem tudja sebezni .");
                 l = false;
             }
             if (masikHaros.eltero == 0 || this.eltero == 0)
