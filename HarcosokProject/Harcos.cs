@@ -6,12 +6,12 @@ namespace HarcosProject
 {
     class Harcos
     {
-        string nev;
-        int szint;
-        int tapasztalat;
-        int eltero;
-        int alapeletero;
-        int alapsebzes;
+       public string nev;
+        public int szint;
+        public int tapasztalat;
+        public int eltero;
+        public int alapeletero;
+        public int alapsebzes;
 
         public Harcos(string nev, int statuszSablon)
         {
@@ -34,6 +34,14 @@ namespace HarcosProject
 
                 alapeletero = 18;
                 alapsebzes = 4;
+            }
+            else if (statuszSablon == 0)
+            {
+                alapeletero = 0;
+                alapeletero = 0;
+            }
+            else {
+                Console.WriteLine("Kérem csak 1-3 adjon meg szamot.");
             }
             eltero = MaxEletero;
 
@@ -98,17 +106,17 @@ namespace HarcosProject
                 Console.WriteLine("Saját magát nem tudja sebezni .");
                 l = false;
             }
-            if (masikHaros.eltero == 0 || this.eltero == 0)
+            if (masikHaros.eltero <= 0 || this.eltero <= 0)
             {
-                Console.WriteLine("Hiba");
+                Console.WriteLine("Hiba!\nA támadod ellenfel halot igy nem tudja meg tamadni ujra.");
+               masikHaros.tapasztalat = 0;
                 l = false;
-            }
-            l = true;
+            }            
             if (l == true)
             {
 
                 masikHaros.eltero -= this.Sebzes;
-                if (masikHaros.eltero > this.Sebzes)
+                if (masikHaros.eltero > 0)
                 {
                     this.eltero -= masikHaros.Sebzes;
                 }
@@ -150,13 +158,7 @@ namespace HarcosProject
         }
 
 
-
-
-
-
-
-
-        public override string ToString()
+        public override string ToString ()
         {
             return string.Format("{0}--LVL:{1}--EXP:{2}/{3}--HP{4}/{5}--DMG:{6}",
                                 this.nev, szint, tapasztalat, SzintLEpeshez, eltero, MaxEletero, Sebzes);

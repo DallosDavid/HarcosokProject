@@ -30,18 +30,36 @@ namespace HarcosokProject
         public static void Kor()
         {
             for (int i = 0; i < Harcosok.Count; i++)
-            {
+            {              
                 Console.WriteLine((i + 1) + "." + Harcosok[i]);
+                if (Harcosok[i].Tapasztalat>=Harcosok[i].SzintLEpeshez )
+                {
+                    Harcosok[i].szint += 1;
+                    Harcosok[i].tapasztalat = 0;
+                    Harcosok[i].eltero = Harcosok[i].MaxEletero;
+                }
             }
+        }
+
+        public static bool Meghalt(Harcos a) 
+        {
+            bool l = false;
+          
+                if (a.Eltero==0)
+                {
+                    l = true;
+                }          
+            return l;
         }
 
         public static void Harcok()
         {
+           
             char a;
             do
             {
                 int hszam;
-               
+                Kor();
                 Console.WriteLine("MIt szeretne csinálni a Harcorsával: \n a.) Megküzdeni egy harcossal\n" +
                    " b.) Gyógyulni\n" +
                    " c.) Kilépn");
@@ -49,6 +67,8 @@ namespace HarcosokProject
 
                 if (a == 'a')
                 {
+
+                    Kor();
                     do
                     {
                         Console.WriteLine("Melyik harcosal akkar meg kuzedeni?");
@@ -58,19 +78,24 @@ namespace HarcosokProject
                             Console.WriteLine("Hiba!\nKérem jó szamit adjojn meg.");
                         }
 
-                    } while (hszam<=0 || hszam>Harcosok.Count);
+                    } while (hszam <= 0 || hszam > Harcosok.Count);
 
-                    if (hszam<Harcosok.Count &&hszam>0)
+                    if (hszam < Harcosok.Count && hszam > 0)
                     {
-                        Console.WriteLine("Ezta a Harcost választotad  ellenfelnek:\n{0}",Harcosok[hszam-1]);
-                        s.Megkuzd(Harcosok[hszam-1]);
+                        Console.WriteLine("Ezta a Harcost választotad  ellenfelnek:\n{0}", Harcosok[hszam - 1]);
+                        s.Megkuzd(Harcosok[hszam - 1]);
                         Console.WriteLine();
-                        Kor();
+                       
                     }
-
-
                 }
-
+                else if (a == 'b')
+                {
+                    s.Gyogyulas();
+                    Kor();
+                }
+                else {
+                    Console.WriteLine("Kérem kisbetuvel adja meg és csak a lehetosogek kotul valaszon.");
+                }
 
             } while (a != 'c');
         }
@@ -79,9 +104,9 @@ namespace HarcosokProject
         static void Main(string[] args)
         {
 
-            Console.WriteLine("HArcosneve");
+            Console.WriteLine("Harcosneve");
             string nev = Console.ReadLine();
-            Console.WriteLine("gharocs staus");
+            Console.WriteLine("Harocs staus");
             int satus = int.Parse(Console.ReadLine());
             s = new Harcos(nev, satus);
             Harcosok.Add(s);
