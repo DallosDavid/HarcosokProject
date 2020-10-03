@@ -7,6 +7,7 @@ namespace HarcosokProject
 {
     class Program
     {
+        public static Random r =new Random();
         public static Harcos s;
         public static List<Harcos> Harcosok = new List<Harcos>();
         public static void Fajjlbe()
@@ -56,22 +57,24 @@ namespace HarcosokProject
         {
            
             char a;
+            int szamol = 0;
+
             do
             {
                 int hszam;
                 Kor();
+                Console.WriteLine();
                 Console.WriteLine("MIt szeretne csinálni a Harcorsával: \n a.) Megküzdeni egy harcossal\n" +
                    " b.) Gyógyulni\n" +
                    " c.) Kilépn");
                 a = Convert.ToChar(Console.ReadLine());
-
                 if (a == 'a')
                 {
 
-                    Kor();
+                    Console.WriteLine();
                     do
                     {
-                        Console.WriteLine("Melyik harcosal akkar meg kuzedeni?");
+                        Console.WriteLine("Melyik harcosal akkarsz meg kuzedeni?");
                         hszam = int.Parse(Console.ReadLine());
                         if (hszam <= 0 || hszam > Harcosok.Count)
                         {
@@ -85,16 +88,38 @@ namespace HarcosokProject
                         Console.WriteLine("Ezta a Harcost választotad  ellenfelnek:\n{0}", Harcosok[hszam - 1]);
                         s.Megkuzd(Harcosok[hszam - 1]);
                         Console.WriteLine();
-                       
                     }
+                    szamol++;
+                    Console.WriteLine("Kor szama:"+szamol);
+                    if (szamol % 3 == 0)
+                    {
+                        s.Megkuzd(Harcosok[r.Next(1, Harcosok.Count)]);
+                        Console.WriteLine("Meg tamadot:{0}", Harcosok[r.Next(1, Harcosok.Count)]);
+                        for (int i = 0; i < Harcosok.Count; i++)
+                        {
+                            Harcosok[i].Gyogyulas();
+                        }
+
+                    }
+
                 }
                 else if (a == 'b')
                 {
+                    Console.WriteLine();
+                    Console.WriteLine("Gyogyitotál");
                     s.Gyogyulas();
-                    Kor();
+                    Console.WriteLine();
+
                 }
-                else {
+                else if (a == 'c')                   
+                {
+                    Console.WriteLine("Kileptel.");
+                }
+                else
+                {
+                    Console.WriteLine();
                     Console.WriteLine("Kérem kisbetuvel adja meg és csak a lehetosogek kotul valaszon.");
+                    Console.WriteLine();
                 }
 
             } while (a != 'c');
@@ -110,8 +135,7 @@ namespace HarcosokProject
             int satus = int.Parse(Console.ReadLine());
             s = new Harcos(nev, satus);
             Harcosok.Add(s);
-            Fajjlbe();
-            Kor();
+            Fajjlbe();            
             Harcok();
 
             Console.ReadLine();

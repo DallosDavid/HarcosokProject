@@ -106,12 +106,18 @@ namespace HarcosProject
                 Console.WriteLine("Saját magát nem tudja sebezni .");
                 l = false;
             }
-            if (masikHaros.eltero <= 0 || this.eltero <= 0)
+            if (masikHaros.eltero <= 0)
             {
                 Console.WriteLine("Hiba!\nA támadod ellenfel halot igy nem tudja meg tamadni ujra.");
                masikHaros.tapasztalat = 0;
                 l = false;
-            }            
+            }
+            if ( this.eltero <= 0)
+            {
+                Console.WriteLine("Meg haltál.");
+                this.eltero = MaxEletero;
+                tapasztalat = 0;
+            }
             if (l == true)
             {
 
@@ -146,12 +152,18 @@ namespace HarcosProject
 
         public void Gyogyulas()
         {
+            Console.WriteLine("Gyogyitotal.");
+            int elle = this.eltero +=3 + szint;
+            Console.WriteLine(elle);
             if (this.eltero == 0)
             {
                 this.eltero = MaxEletero;
             }
-            else
+            else if (elle > this.eltero)
             {
+                Console.WriteLine("PLus hp nem adhatsz magadnak.");
+            }
+            else {
                 this.Eltero += 3 + szint;
             }
 
