@@ -65,10 +65,7 @@ namespace HarcosokProject
                         Console.WriteLine("Ezta a Harcost választotad  ellenfelnek:\n{0}",Harcosok[hszam-1]);
                         s.Megkuzd(Harcosok[hszam-1]);
                         Console.WriteLine();
-                        foreach (Harcos h in Harcosok)
-                        {
-                            Console.WriteLine(h);
-                        }
+                        Kor();
                     }
 
 

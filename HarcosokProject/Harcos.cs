@@ -86,6 +86,7 @@ namespace HarcosProject
         public int MaxEletero
         {
             get => alapeletero + szint * 3;
+
         }
 
 
@@ -102,30 +103,32 @@ namespace HarcosProject
                 Console.WriteLine("Hiba");
                 l = false;
             }
+            l = true;
             if (l == true)
             {
-                masikHaros.Eltero -= this.Sebzes;
+
+                masikHaros.eltero -= this.Sebzes;
                 if (masikHaros.eltero > this.Sebzes)
                 {
-                    this.Eltero -= masikHaros.Sebzes;
+                    this.eltero -= masikHaros.Sebzes;
                 }
-                if (this.Eltero > 0)
+                if (this.eltero > 0)
                 {
-                    Tapasztalat += 5;
+                    tapasztalat += 5;
 
                 }
                 if (masikHaros.eltero > 0)
                 {
-                    masikHaros.Tapasztalat += 5;
+                    masikHaros.tapasztalat += 5;
                 }
-                if (this.Eltero < masikHaros.Sebzes)
+                if (this.eltero < masikHaros.Sebzes)
                 {
-                    masikHaros.Tapasztalat += 10;
+                    masikHaros.tapasztalat += 10;
 
                 }
-                else if (masikHaros.Eltero < this.Sebzes)
+                else if (masikHaros.eltero < this.Sebzes)
                 {
-                    this.Tapasztalat += 10;
+                    this.tapasztalat += 10;
                 }
 
             }
